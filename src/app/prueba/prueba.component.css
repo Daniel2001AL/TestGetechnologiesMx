@@ -65,16 +65,11 @@ tbody > td{
     padding: 0;
 }
 
-/* .colm-id{
-    font-size: small;
-    width: 5%;
-} */
-
-.bi{
+td > .bi{
     font-size: 3.5vh;
 }
 
-.bi:hover{
+td > .bi:hover{
     font-size: 4.5vh;
 }
 
@@ -92,4 +87,30 @@ tbody > td{
     border: 1px solid black;
     text-decoration: none;
     
+}
+
+.modal-header{
+    background-color: rgb(17, 17, 17);
+    color: white;
+}
+
+.cls-mdl{
+    font-size: large;
+}
+
+.div-btn-form{
+    text-align: end;
+}
+
+.bt-sub{
+    background-color: black;
+    border: 2px solid black;
+    color: white;
+}
+
+.bt-sub:hover{
+    color: black;
+    background-color: white;
+    border-color: black;
+    border: 2px solid;
 }

@@ -1,4 +1,4 @@
-<header>Prueba Tecnica Gettechnologies</header>
+<header>Prueba Tecnica Getechnologies</header>
 <section class="head-section">
     <div class="container">
         <div class="row">
@@ -58,7 +58,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Carga usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clear()"></button>
+                <i class="bi bi-x cls-mdl" data-bs-dismiss="modal" aria-label="Close" (click)="clear()"></i>
             </div>
             <div class="modal-body">
                 <form (ngSubmit)="onSubmint()" [formGroup]="empleadoForm">
@@ -84,8 +84,8 @@
                         </select>
                         <span class="text-danger" *ngIf="empleadoForm.get('position')?.touched && empleadoForm.get('position')?.hasError('required')">Completar campo requerido</span>
                     </div>
-                    <div class="mb-3">
-                       <button type="submit" class="btn btn-lg" data-bs-dismiss="modal" [disabled]="empleadoForm.invalid || empleadoForm.disabled">Guardar</button>
+                    <div class="mb-3 div-btn-form">
+                       <button type="submit" class="btn btn-lg bt-sub" data-bs-dismiss="modal" [disabled]="empleadoForm.invalid || empleadoForm.disabled">Guardar</button>
                     </div>
                 </form>
             </div>
