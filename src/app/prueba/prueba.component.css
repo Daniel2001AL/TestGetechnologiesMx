@@ -1,3 +1,63 @@
 .btn-colm{
     text-align: center;
 }
+
+header{
+    background-color: black;
+    color: white;
+    font-size: 7vh;
+    text-align: center;
+    padding: 2vh;
+    width: 100%;
+}
+
+.head-section{
+    margin-top: 5vh;
+    width: 100%;    
+}
+
+.title{
+    font-size: 7vh;
+}
+
+.btndiv{
+    padding: 3.9vh;
+}
+.btndiv > button{
+    background-color: black;
+    border: 2px solid black;
+}
+
+.btndiv > button:hover{
+    color: black;
+    background-color: white;
+    border-color: black;
+    border: 2px solid;
+}
+
+.btndiv:hover, .btndiv:active, .btndiv:focus, .btndiv:focus-visible{
+    border-color: white;
+}
+
+.section-table{
+    padding: 0 5%;
+    margin-top: 20px;
+    width: 100%
+}
+
+.table{
+    text-align: center;
+}
+
+.bi{
+    font-size: 3.5vh;
+}
+
+.bi:hover{
+    font-size: 4.5vh;
+}
+
+.buttons-table{
+    letter-spacing: 3vh;
+    width: 20%;
+}

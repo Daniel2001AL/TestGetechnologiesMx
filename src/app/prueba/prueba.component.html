@@ -1,3 +1,84 @@
-<h1>Prueba Tecnica Gettechnologies</h1>
+<header>Prueba Tecnica Gettechnologies</header>
+<section class="head-section">
+    <div class="container">
+        <div class="row">
+            <div class=" col-6 col-md-9">
+                <h3 class="title">Lista de empledos</h3>
+            </div>
+            <div class="col-6 col-md-3 btn btn-add btndiv">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)= "enable()">
+                    Nuevo empleado
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
 
-<app-modal></app-modal>
+<section class="section-table">
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empleado of empleadosList; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{empleado.name}}</td>
+                <td>{{empleado.age}}</td>
+                <td>{{empleado.position}}</td>
+                <td class="buttons-table">
+                    <i type="button" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)= "updateForm(empleado)">
+                    </i>
+                    <i type="button" class="bi bi-trash" (click)= "delete(empleado)"></i>
+                    <i type="button" class="bi bi-broadcast" (click)= "changeStatus(empleado)"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- MODAL -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Carga usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clear()"></button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="onSubmint()" [formGroup]="empleadoForm">
+                    <div class="mb-3">
+                        <label for="name">Nombre Completo</label>
+                        <input type="text" class="form-control" id="name" name="name" formControlName="name" required>
+                        <span class="text-danger" *ngIf="empleadoForm.get('name')?.touched && empleadoForm.get('name')?.hasError('required')">Completar campo requerido</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="datebirth">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="datebirth" name="datebirth" formControlName="datebirth" required>
+                        <span class="text-danger" *ngIf="empleadoForm.get('datebirth')?.touched && empleadoForm.get('datebirth')?.hasError('required')">Completar campo requerido</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="age">Edad</label>
+                        <input type="number" class="form-control" id="age" name="age" formControlName="age" required>
+                        <span class="text-danger" *ngIf="empleadoForm.get('age')?.touched && empleadoForm.get('age')?.hasError('required')">Completar campo requerido</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="position">Cargo</label>
+                        <select  class="form-select" name="position" id="position" formControlName="position">
+                            <option *ngFor="let cargo of cargos" [value]="cargo.id" >{{cargo.description}}</option>
+                        </select>
+                        <span class="text-danger" *ngIf="empleadoForm.get('position')?.touched && empleadoForm.get('position')?.hasError('required')">Completar campo requerido</span>
+                    </div>
+                    <div class="mb-3">
+                       <button type="submit" class="btn btn-lg" data-bs-dismiss="modal" [disabled]="empleadoForm.invalid || empleadoForm.disabled">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
