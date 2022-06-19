@@ -39,6 +39,12 @@ header{
     border-color: white;
 }
 
+.section-search{
+    padding: 0 7.5vw;
+    margin: 3vh 0;
+}
+
+
 .section-table{
     padding: 0 5%;
     margin-top: 20px;
@@ -47,7 +53,22 @@ header{
 
 .table{
     text-align: center;
+    width: 100%;
 }
+
+tbody > td{
+    width: auto;
+}
+
+.agedit{
+    width: 100%;
+    padding: 0;
+}
+
+/* .colm-id{
+    font-size: small;
+    width: 5%;
+} */
 
 .bi{
     font-size: 3.5vh;
@@ -59,7 +80,7 @@ header{
 
 .buttons-table{
     letter-spacing: 3vh;
-    width: 20%;
+    /* width: 20%; */
 }
 
 .agedit{

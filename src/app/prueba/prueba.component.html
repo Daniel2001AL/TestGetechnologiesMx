@@ -14,21 +14,28 @@
     </div>
 </section>
 
+<section class="section-search col-lg-4" >
+    <div class="input-group flex-nowrap">
+        <input #searchIn type="text" class="form-control" placeholder="Buscar..." aria-label="searchIn" aria-describedby="addon-wrapping" (keyup)="onSearch(searchIn.value)">
+        <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search"></i></span>
+    </div>
+</section>
+
 <section class="section-table">
     <table class="table">
         <thead class="table-dark">
             <tr>
+                <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Edad</th>
-                <th scope="col">Cargo</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor= "let empleado of empleadosList | paginate:page_size:page_number ; let i = index" >
+            <tr *ngFor= "let empleado of empleadosList | paginate:page_size:page_number:search ; let i = index" >
+                <td class="colm-id">{{empleado.id}}</td>
                 <td>{{empleado.name}}</td>
-                <td><input #agedit type="number" name="agedit"  class="agedit" id="agedit"  value="{{empleado.age}}" (keyup.enter)="updateAge(empleado, agedit.value)" ></td>
-                <td>{{empleado.position}}</td>
+                <td><input #agedit type="number" name="agedit"  class="agedit" id="agedit"  value="{{empleado.age}}" (keyup.enter)= "updateAge(empleado, agedit.value)" ></td>
                 <td class="buttons-table">
                     <i type="button" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)= "updateForm(empleado)">
                     </i>

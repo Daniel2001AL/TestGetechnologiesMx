@@ -1,17 +1,21 @@
+import { Conditional } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import Empleado from '../interfaces/empleado.interface';
+import { PaginatePipe } from '../pipes/paginate.pipe';
 import { EmpleadoserviceService } from '../services/empleadoservice.service';
 
 @Component({
   selector: 'app-prueba',
   templateUrl: './prueba.component.html',
-  styleUrls: ['./prueba.component.css']
+  styleUrls: ['./prueba.component.css'],
+
 })
 export class PruebaComponent implements OnInit {
   public empleadoForm!: FormGroup;
   empleadosList!: Empleado[];
+  search: string = '';
   isEdit = false;
   empleadoEdit!: any;
   cargos = [
@@ -21,7 +25,7 @@ export class PruebaComponent implements OnInit {
   ];
 
   page_size: number = 5;
-  page_number: number = 1;
+  page_number: number=0;
 
   constructor(private fb: FormBuilder, private empleadoService: EmpleadoserviceService) { }
 
@@ -32,6 +36,25 @@ export class PruebaComponent implements OnInit {
     })
   }
 
+  
+//METODO INICIALIZAR FORMULARIO
+  initForm():FormGroup{
+    return this.fb.group({
+      name: ['', Validators.required],
+      datebirth: ['', Validators.required],
+      age: ['', Validators.required],
+      position: ['', Validators.required],
+      status:[true, Validators.required]
+    })
+  }
+
+//METODO BARRA BUSQUEDAD ENVIO A PIPE
+  onSearch(inSearch: string){
+    this.search = inSearch;
+  }
+
+
+//METODO SUMBIT FORM 
   async onSubmint(){
     const data = this.empleadoForm.value;
     if(this.isEdit === false){
@@ -43,16 +66,7 @@ export class PruebaComponent implements OnInit {
     this.isEdit = false;
   }
 
-  initForm():FormGroup{
-    return this.fb.group({
-      name: ['', Validators.required],
-      datebirth: ['', Validators.required],
-      age: ['', Validators.required],
-      position: ['', Validators.required],
-      status:[true, Validators.required]
-    })
-  }
-
+//METODO LLENADO FORMULARIO UPDATE
   updateForm(empleados: Empleado){
     if(empleados.status === true){
       alert("Empleado activo, Favor de cambiar status a incativo para editar");
@@ -72,33 +86,38 @@ export class PruebaComponent implements OnInit {
     
   }
 
-  delete(empleado: Empleado){
-    this.empleadoService.deleteEmpleado(empleado);
-  }
-
-  changeStatus(empleado: Empleado){
-    this.empleadoService.updateStatusEmpleado(empleado, !empleado.status)
-  }
-  enable(){
-    this.empleadoForm.enable()
-    console.log(66)
-  }
-
-  clear(){
-    this.isEdit = false;
-    this.empleadoForm = this.initForm();
-  }
-
-
-  handlePage(e: PageEvent){
-    this.page_size = e.pageSize;
-    this.page_number = e.pageIndex+1;
-  }
-
+  //METODO EDAD UPDATE
   updateAge(empleado: Empleado, age:any){
     console.log(age)
     this.empleadoService.updateStatusAge(empleado,age);
   }
 
-  
+  //METODO BORRAR EMPLEADO
+  delete(empleado: Empleado){
+    this.empleadoService.deleteEmpleado(empleado);
+  }
+
+//METODO CAMBIAR STATUS
+  changeStatus(empleado: Empleado){
+    this.empleadoService.updateStatusEmpleado(empleado, !empleado.status)
+  }
+
+  //METODO PARA HABILITAR FORMULARIO
+  enable(){
+    this.empleadoForm.enable()
+  }
+
+
+  //METODO LIMPIAR FORM
+  clear(){
+    this.isEdit = false;
+    this.empleadoForm = this.initForm();
+  }
+
+//MANEJO EVENTOS PAGINACION
+  handlePage(e: PageEvent){
+    this.page_size = e.pageSize;
+    this.page_number = e.pageIndex+1;
+  }
+
 }
