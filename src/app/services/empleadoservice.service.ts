@@ -36,4 +36,9 @@ export class EmpleadoserviceService {
     const empleadoDocRef = doc(this.firestore, `empleados/${empleado.id}`);
     return updateDoc(empleadoDocRef, {status});
   }
+
+  updateStatusAge(empleado: Empleado, age: any){
+    const empleadoDocRef = doc(this.firestore, `empleados/${empleado.id}`);
+    return updateDoc(empleadoDocRef, {age});
+  }
 }

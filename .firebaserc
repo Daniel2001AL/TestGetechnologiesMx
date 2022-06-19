@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "testgettech": {
+      "hosting": {
+        "testGe": [
+          "testgettech"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "testgettech"
+  }
+}

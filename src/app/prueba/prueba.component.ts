@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 import Empleado from '../interfaces/empleado.interface';
 import { EmpleadoserviceService } from '../services/empleadoservice.service';
 
@@ -18,6 +19,10 @@ export class PruebaComponent implements OnInit {
     {"id": 2, "description": "Coordinador"},
     {"id": 3, "description": "Subdirector"},
   ];
+
+  page_size: number = 5;
+  page_number: number = 1;
+
   constructor(private fb: FormBuilder, private empleadoService: EmpleadoserviceService) { }
 
   ngOnInit(): void {
@@ -32,7 +37,7 @@ export class PruebaComponent implements OnInit {
     if(this.isEdit === false){
       await this.empleadoService.addEmpleado(data); 
     }else{
-      await this.empleadoService.updateEmpleado(this.empleadoEdit,data);
+      this.empleadoService.updateEmpleado(this.empleadoEdit,data);
     }
     this.empleadoForm = this.initForm();
     this.isEdit = false;
@@ -76,10 +81,24 @@ export class PruebaComponent implements OnInit {
   }
   enable(){
     this.empleadoForm.enable()
+    console.log(66)
   }
 
   clear(){
     this.isEdit = false;
     this.empleadoForm = this.initForm();
   }
+
+
+  handlePage(e: PageEvent){
+    this.page_size = e.pageSize;
+    this.page_number = e.pageIndex+1;
+  }
+
+  updateAge(empleado: Empleado, age:any){
+    console.log(age)
+    this.empleadoService.updateStatusAge(empleado,age);
+  }
+
+  
 }

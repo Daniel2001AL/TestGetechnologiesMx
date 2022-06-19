@@ -18,7 +18,6 @@
     <table class="table">
         <thead class="table-dark">
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Edad</th>
                 <th scope="col">Cargo</th>
@@ -26,10 +25,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let empleado of empleadosList; let i = index">
-                <td>{{i+1}}</td>
+            <tr *ngFor= "let empleado of empleadosList | paginate:page_size:page_number ; let i = index" >
                 <td>{{empleado.name}}</td>
-                <td>{{empleado.age}}</td>
+                <td><input #agedit type="number" name="agedit"  class="agedit" id="agedit"  value="{{empleado.age}}" (keyup.enter)="updateAge(empleado, agedit.value)" ></td>
                 <td>{{empleado.position}}</td>
                 <td class="buttons-table">
                     <i type="button" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)= "updateForm(empleado)">
@@ -40,6 +38,11 @@
             </tr>
         </tbody>
     </table>
+    <mat-paginator [length]= "empleadosList.length"
+                [pageSize]= "page_size"
+                [pageSizeOptions]= "[5, 10, 25, 100]"
+                (page) = "handlePage($event)">
+    </mat-paginator>
 </section>
 
 <!-- MODAL -->

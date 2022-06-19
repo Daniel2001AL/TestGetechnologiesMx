@@ -61,3 +61,14 @@ header{
     letter-spacing: 3vh;
     width: 20%;
 }
+
+.agedit{
+    text-align: center;
+    border: none;
+}
+
+.agedit:hover{
+    border: 1px solid black;
+    text-decoration: none;
+    
+}
